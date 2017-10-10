@@ -48,7 +48,7 @@ public class MyLZW {
      */
     public static void compress() { 
         
-        BinaryStdOut.write(mode, 2);
+        BinaryStdOut.write(mode, 8);
         String input = BinaryStdIn.readString();
         TST<Integer> st = new TST<Integer>();
         for (int i = 0; i < R; i++)
@@ -88,7 +88,8 @@ public class MyLZW {
                             W = MIN_LENGTH;
                             L = (int)Math.pow(2, (W));
                             code = R + 1;
-                            continue;
+                            st.put(input.substring(0, t + 1), code++);
+                           
 
                         }else if(mode == 2){
                         //monitor
@@ -117,7 +118,7 @@ public class MyLZW {
      */
     public static void expand() {
 
-        mode = BinaryStdIn.readInt(2); // Read mode
+        mode = BinaryStdIn.readInt(8); // Read mode
         String[] st = new String[65536];
         int i; // next available codeword value
 
@@ -132,17 +133,18 @@ public class MyLZW {
 
         while (true) {
 
-            if(i >= (L)){
+            if(i >= L){
+                System.err.println("i IS L");
                 // if all codewords are used but still havent reached 16 bits
                 if(W < MAX_LENGTH){
                     W++;
                     L = (int)Math.pow(2, (W));
                     System.err.println("W: " + W);
                     System.err.println("L: " + L);
-                    
-                  
+                    // continue;
+
                 // if all codewords are reached and we already are using 16 bits         
-                }else if(W >= MAX_LENGTH){
+                }else if(W == MAX_LENGTH){
                     System.err.println("NEEL IS HERE");
                     if(mode == 0){
                         //do nothing
@@ -153,9 +155,6 @@ public class MyLZW {
                         W = MIN_LENGTH;
                         L = (int)Math.pow(2, (W));
                         i = R + 1;    
-                        System.err.println("SIIZE: " + st.length);
-                        codeword = BinaryStdIn.readInt(W);
-                        
 
                     }else if(mode == 2){
                         //monitor
@@ -165,18 +164,10 @@ public class MyLZW {
             
             }
 
-                BinaryStdOut.write(val);
-                codeword = BinaryStdIn.readInt(W);
+            BinaryStdOut.write(val);
+            codeword = BinaryStdIn.readInt(W);
             
-            
-            
-
-            System.err.println("i is now " + i);
-            System.err.println("codeword is now " + codeword);
-            System.err.println("L is now " + L);
-            System.err.println("W is now " + W);
-            System.err.println("val is  " + val);
-
+        
             
             if (codeword == R) break;
             String s = st[codeword];
