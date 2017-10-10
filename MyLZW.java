@@ -47,6 +47,8 @@ public class MyLZW {
      * to standard output.
      */
     public static void compress() { 
+        
+        BinaryStdOut.write(mode, 2);
         String input = BinaryStdIn.readString();
         TST<Integer> st = new TST<Integer>();
         for (int i = 0; i < R; i++)
@@ -72,6 +74,7 @@ public class MyLZW {
                         System.err.println("W: " + W);
                         System.err.println("L: " + L);
                         st.put(input.substring(0, t + 1), code++);
+
                    
                     //If code book fills up, start looking for other options(reset, nothing, monitor)
                     }else if(W == MAX_LENGTH){
@@ -85,7 +88,7 @@ public class MyLZW {
                             W = MIN_LENGTH;
                             L = (int)Math.pow(2, (W));
                             code = R + 1;
-
+                            continue;
 
                         }else if(mode == 2){
                         //monitor
@@ -113,6 +116,8 @@ public class MyLZW {
      * the results to standard output.
      */
     public static void expand() {
+
+        mode = BinaryStdIn.readInt(2); // Read mode
         String[] st = new String[65536];
         int i; // next available codeword value
 
@@ -120,41 +125,59 @@ public class MyLZW {
         for (i = 0; i < R; i++)
             st[i] = "" + (char) i;
         st[i++] = ""; // (unused) lookahead for EOF
-        System.err.println("GOING IN " + i);
         int codeword = BinaryStdIn.readInt(W);
 
         if (codeword == R) return;           // expanded message is empty string
         String val = st[codeword];
 
         while (true) {
-            System.err.println("This is i " + i);
+
             if(i >= (L)){
-                // System.err.println("CODE WORD EQUAL L-1***** L: " + L + "code: " + i);
+                // if all codewords are used but still havent reached 16 bits
                 if(W < MAX_LENGTH){
                     W++;
                     L = (int)Math.pow(2, (W));
                     System.err.println("W: " + W);
                     System.err.println("L: " + L);
-                           
+                    
+                  
+                // if all codewords are reached and we already are using 16 bits         
                 }else if(W >= MAX_LENGTH){
                     System.err.println("NEEL IS HERE");
-                    st = resetExpandCodeBook();
-                    W = MIN_LENGTH;
-                    L = (int)Math.pow(2, (W));
-                    i = R + 1;
-                    
+                    if(mode == 0){
+                        //do nothing
 
+                    }else if(mode == 1){
+                        //reset    
+                        st = resetExpandCodeBook();   
+                        W = MIN_LENGTH;
+                        L = (int)Math.pow(2, (W));
+                        i = R + 1;    
+                        System.err.println("SIIZE: " + st.length);
+                        codeword = BinaryStdIn.readInt(W);
+                        
 
+                    }else if(mode == 2){
+                        //monitor
+                    }       
                 }
+                
+            
             }
+
+                BinaryStdOut.write(val);
+                codeword = BinaryStdIn.readInt(W);
+            
+            
+            
 
             System.err.println("i is now " + i);
             System.err.println("codeword is now " + codeword);
             System.err.println("L is now " + L);
-            System.err.println("val is now " + val);
+            System.err.println("W is now " + W);
+            System.err.println("val is  " + val);
 
-            BinaryStdOut.write(val);
-            codeword = BinaryStdIn.readInt(W);
+            
             if (codeword == R) break;
             String s = st[codeword];
             if (i == codeword) s = val + val.charAt(0);   // special case hack
