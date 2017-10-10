@@ -61,18 +61,38 @@ public class MyLZW {
             int t = s.length();
             if (t < input.length()){    // Add s to symbol table.
                 // System.err.println("Code is " + code);
+                
                 //if no more room, resize
                 if(code >= L){
 
-                     if(W < MAX_LENGTH){
-                            W++;
-                            L = (int)Math.pow(2, (W));
-                            System.err.println("W: " + W);
-                            System.err.println("L: " + L);
-                            st.put(input.substring(0, t + 1), code++);
-                        }     
+                    //If still not a full codebook with 16 bits, increase codeword size
+                    if(W < MAX_LENGTH){
+                        W++;
+                        L = (int)Math.pow(2, (W));
+                        System.err.println("W: " + W);
+                        System.err.println("L: " + L);
+                        st.put(input.substring(0, t + 1), code++);
                    
-        
+                    //If code book fills up, start looking for other options(reset, nothing, monitor)
+                    }else if(W == MAX_LENGTH){
+                        System.err.println("NEEL IS HERE");
+                        if(mode == 0){
+                        //do nothing
+
+                        }else if(mode == 1){
+                            //reset
+                            st = resetCompressCodeBook();
+                            W = MIN_LENGTH;
+                            L = (int)Math.pow(2, (W));
+                            code = R + 1;
+
+
+                        }else if(mode == 2){
+                        //monitor
+                        }
+                    }
+                    
+                //if not all codewords are used
                 }else if(code < L){
                     st.put(input.substring(0, t + 1), code++);
                 }
@@ -93,15 +113,14 @@ public class MyLZW {
      * the results to standard output.
      */
     public static void expand() {
-        System.err.println("In expand");
         String[] st = new String[65536];
         int i; // next available codeword value
 
         // initialize symbol table with all 1-character strings
         for (i = 0; i < R; i++)
             st[i] = "" + (char) i;
-        st[i++] = "";                        // (unused) lookahead for EOF
-
+        st[i++] = ""; // (unused) lookahead for EOF
+        System.err.println("GOING IN " + i);
         int codeword = BinaryStdIn.readInt(W);
 
         if (codeword == R) return;           // expanded message is empty string
@@ -112,29 +131,34 @@ public class MyLZW {
             if(i >= (L)){
                 // System.err.println("CODE WORD EQUAL L-1***** L: " + L + "code: " + i);
                 if(W < MAX_LENGTH){
-                W++;
-                L = (int)Math.pow(2, (W));
-                System.err.println("W: " + W);
-                System.err.println("L: " + L);
-                
-
+                    W++;
+                    L = (int)Math.pow(2, (W));
+                    System.err.println("W: " + W);
+                    System.err.println("L: " + L);
                            
+                }else if(W >= MAX_LENGTH){
+                    System.err.println("NEEL IS HERE");
+                    st = resetExpandCodeBook();
+                    W = MIN_LENGTH;
+                    L = (int)Math.pow(2, (W));
+                    i = R + 1;
+                    
+
+
+                }
             }
-        }
+
+            System.err.println("i is now " + i);
+            System.err.println("codeword is now " + codeword);
+            System.err.println("L is now " + L);
+            System.err.println("val is now " + val);
+
             BinaryStdOut.write(val);
             codeword = BinaryStdIn.readInt(W);
-            System.err.println("This is codeword: " + codeword);
             if (codeword == R) break;
-
             String s = st[codeword];
-            System.err.println("StCode: " + s);
-            if (i == codeword){ 
-                s = val + val.charAt(0);   // special case hack
-            }
-            if (i < (L)){
-             st[i++] = val + s.charAt(0);
-             
-            }
+            if (i == codeword) s = val + val.charAt(0);   // special case hack
+            if (i < L) st[i++] = val + s.charAt(0);
             val = s;
         }
         BinaryStdOut.close();
@@ -147,27 +171,43 @@ public class MyLZW {
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
+        
         if(args[0].equals("-")){
+            
             if(args[1].equals("n")){
-                mode = 0;
+                 mode = 0;
+            
             }else if(args[1].equals("r")){
                  mode = 1;
+            
             }else if (args[1].equals("m")){
                  mode = 2;
+            
             }else{
                 System.err.println("No mode entered, exiting");
                 System.exit(1);
             }
+
          compress();
         }
         else if (args[0].equals("+")) expand();
         else throw new IllegalArgumentException("Illegal command line argument");
     }
 
-  public static TST<Integer> createNewDict(){
+  public static TST<Integer> resetCompressCodeBook(){
      TST<Integer> st = new TST<Integer>();
         for (int i = 0; i < R; i++)
             st.put("" + (char) i, i);  
+
+        return st;
+  } 
+
+  public static String[] resetExpandCodeBook(){
+     String[] st = new String[65536];
+     int i;
+        for (i = 0; i < R; i++)
+            st[i] = "" + (char) i;
+        st[i++] = "";    
 
         return st;
   } 
