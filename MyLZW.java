@@ -36,7 +36,13 @@ public class MyLZW {
     private static int W = 9;         // codeword width
     private static final int MIN_LENGTH = 9;
     private static final int MAX_LENGTH = 16;
+    private static double oldRatio = 0;
+    private static double uncompressedData = 0;
+    private static double compressedData = 0;
+    private static double currentratio = 0;
+     private static boolean isMonitoring = false;
     private static int mode;
+
 
     // Do not instantiate.
     private MyLZW() { }
@@ -59,7 +65,10 @@ public class MyLZW {
 
         while (input.length() > 0) {
             String s = st.longestPrefixOf(input);  // Find max prefix match s.
+            uncompressedData += s.length() * 8;
+
             BinaryStdOut.write(st.get(s), W);      // Print s's encoding.
+             compressedData += W;
             int t = s.length();
             if (t < input.length()){    // Add s to symbol table.
                 // System.err.println("Code is " + code);
@@ -78,7 +87,7 @@ public class MyLZW {
                    
                     //If code book fills up, start looking for other options(reset, nothing, monitor)
                     }else if(W == MAX_LENGTH){
-                        System.err.println("NEEL IS HERE");
+
                         if(mode == 0){
                         //do nothing
 
@@ -92,7 +101,25 @@ public class MyLZW {
                            
 
                         }else if(mode == 2){
-                        //monitor
+                                currentratio = uncompressedData/compressedData;
+                                if(!isMonitoring){
+                                    
+                                    oldRatio = currentratio;
+                                    isMonitoring = true;
+                                    
+                                }else if(oldRatio/currentratio > 1.1){
+                            
+                                    st = resetCompressCodeBook();
+                                    W = MIN_LENGTH;
+                                    L = (int)Math.pow(2, (W));
+                                    code = R + 1;
+                                    st.put(input.substring(0, t + 1), code++);
+                                    System.err.println("CODE BOOK RESET");
+                                    isMonitoring = false;
+                                
+
+                            }
+                            
                         }
                     }
                     
@@ -103,9 +130,7 @@ public class MyLZW {
                 
             }   
             input = input.substring(t);            // Scan past s in input.
-            // System.err.println("input after substring " + input);
-            // System.err.println("************************************************************* ");
-
+           
         }
         BinaryStdOut.write(R, W);
         BinaryStdOut.close();
@@ -129,12 +154,15 @@ public class MyLZW {
         int codeword = BinaryStdIn.readInt(W);
 
         if (codeword == R) return;           // expanded message is empty string
+        
         String val = st[codeword];
+         uncompressedData += val.length() * 8;
+         compressedData += W;
 
         while (true) {
 
             if(i >= L){
-                System.err.println("i IS L");
+
                 // if all codewords are used but still havent reached 16 bits
                 if(W < MAX_LENGTH){
                     W++;
@@ -145,7 +173,7 @@ public class MyLZW {
 
                 // if all codewords are reached and we already are using 16 bits         
                 }else if(W == MAX_LENGTH){
-                    System.err.println("NEEL IS HERE");
+ 
                     if(mode == 0){
                         //do nothing
 
@@ -158,6 +186,23 @@ public class MyLZW {
 
                     }else if(mode == 2){
                         //monitor
+                        currentratio = uncompressedData/compressedData;
+                        if(!isMonitoring){
+                                    
+                            oldRatio = currentratio;
+                            isMonitoring = true;
+                                    
+                        }else if(oldRatio/currentratio > 1.1){
+                            
+                            st = resetExpandCodeBook();   
+                            W = MIN_LENGTH;
+                            L = (int)Math.pow(2, (W));
+                            i = R + 1; 
+                            System.err.println("CODE BOOK RESET");
+                            isMonitoring = false;
+                                
+
+                            }
                     }       
                 }
                 
