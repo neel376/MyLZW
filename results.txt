@@ -5,7 +5,7 @@
 
 
 	FOR MYLZW, NOT WINZIP
-***** Kb = bytes x 1000 (not using 1024 to multiply) *************
+***** Kb = bytes x 1000 (not using 1024 to multiply) **************
 ***** Mb = bytes x 1,000,000 ************************************
 
 
