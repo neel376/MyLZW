@@ -37,8 +37,8 @@ public class MyLZW {
     private static final int MIN_LENGTH = 9;
     private static final int MAX_LENGTH = 16;
     private static double oldRatio = 0;
-    private static double uncompressedData = 0;
-    private static double compressedData = 0;
+    private static int uncompressedData = 0;
+    private static int compressedData = 0;
     private static double currentratio = 0;
      private static boolean isMonitoring = false;
     private static int mode;
@@ -65,12 +65,12 @@ public class MyLZW {
 
         while (input.length() > 0) {
             String s = st.longestPrefixOf(input);  // Find max prefix match s.
-            uncompressedData += s.length() * 8;
+            uncompressedData += (s.length() * 8);
 
             BinaryStdOut.write(st.get(s), W);      // Print s's encoding.
              compressedData += W;
             int t = s.length();
-            if (t < input.length()){    // Add s to symbol table.
+            if (t < input.length()){ 
                 // System.err.println("Code is " + code);
                 
                 //if no more room, resize
@@ -101,13 +101,13 @@ public class MyLZW {
                            
 
                         }else if(mode == 2){
-                                currentratio = uncompressedData/compressedData;
+                                currentratio = (double)(uncompressedData/compressedData);
                                 if(!isMonitoring){
                                     
                                     oldRatio = currentratio;
                                     isMonitoring = true;
                                     
-                                }else if(oldRatio/currentratio > 1.1){
+                                }else if((oldRatio/currentratio) > 1.1){
                             
                                     st = resetCompressCodeBook();
                                     W = MIN_LENGTH;
@@ -116,10 +116,7 @@ public class MyLZW {
                                     st.put(input.substring(0, t + 1), code++);
                                     System.err.println("CODE BOOK RESET");
                                     isMonitoring = false;
-                                
-
-                            }
-                            
+                            }     
                         }
                     }
                     
@@ -156,10 +153,11 @@ public class MyLZW {
         if (codeword == R) return;           // expanded message is empty string
         
         String val = st[codeword];
-         uncompressedData += val.length() * 8;
-         compressedData += W;
+         
 
         while (true) {
+         uncompressedData += (val.length() * 8);
+         compressedData += W;
 
             if(i >= L){
 
@@ -186,13 +184,13 @@ public class MyLZW {
 
                     }else if(mode == 2){
                         //monitor
-                        currentratio = uncompressedData/compressedData;
+                        currentratio = (double)(uncompressedData/compressedData);
                         if(!isMonitoring){
                                     
                             oldRatio = currentratio;
                             isMonitoring = true;
                                     
-                        }else if(oldRatio/currentratio > 1.1){
+                        }else if((oldRatio/currentratio) > 1.1){
                             
                             st = resetExpandCodeBook();   
                             W = MIN_LENGTH;
@@ -202,7 +200,7 @@ public class MyLZW {
                             isMonitoring = false;
                                 
 
-                            }
+                        }
                     }       
                 }
                 
