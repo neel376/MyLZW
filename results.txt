@@ -4,7 +4,7 @@
 
 
 
-*****Kb = bytes x 1000 (not using 1024 to multiply)
+*****Kb = bytes x 1000 (not using 1024 to multiply to get kb)
 *****Mb = bytes x 1,000,000
 
 
@@ -108,4 +108,64 @@ Monitor			uncompressed: 927.65kb			uncompressed: 157.04kb
 			compressed: 3.95kb			compressed: 62.93kb          
 
 	ratio			234.84					2.495
+
+
+
+**********************************************************************************************************************************
+	
+	USING WINZIP (already know original file sizes so not going to include that)
+	Using kb = 1024 bytes this time
+
+
+				Compressed size		Compression Ratio
+
+
+
+all.tar				 907kb			   3.3
+
+
+Assig2.doc			 21.6kb			   3.9
+
+
+Bmps.tar			 55.2kb			   19.6
+
+
+code.txt			 14.1kb	  		   5.0			  
+
+
+code2.txt			 12.5kb			   4.5
+
+
+edit.exe			 117.0kb		   1.97
+ 
+
+frosty.jpg			 124.0kb		   1.0
+ 
+
+gone_fishing.bmp		 8.1kb			   2.1
+
+
+Large.txt			459.0kb			   2.6
+ 
+
+Lego-big.gif			90.4kb			   1.0
+
+
+medium.txt			10.2kb			   2.4
+
+
+texts.tar			496.0kb			   2.7
+
+
+Wacky.bmp			3.0kb			   298.0
+
+
+winnt256.bmp			44.0kb			   3.5
+
+
+
+	
+
+
+
 
