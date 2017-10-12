@@ -60,9 +60,7 @@ public class MyLZW {
         for (int i = 0; i < R; i++)
             st.put("" + (char) i, i);  
         int code = R+1;  // R is codeword for EOF
-        // System.err.println("code is " + code);
-        // System.err.println("s is " + st.keys());
-
+        
         while (input.length() > 0) {
             String s = st.longestPrefixOf(input);  // Find max prefix match s.
             uncompressedData += (s.length() * 8);
@@ -80,8 +78,7 @@ public class MyLZW {
                     if(W < MAX_LENGTH){
                         W++;
                         L = (int)Math.pow(2, (W));
-                        System.err.println("W: " + W);
-                        System.err.println("L: " + L);
+                        
                         st.put(input.substring(0, t + 1), code++);
 
                    
@@ -101,7 +98,7 @@ public class MyLZW {
                            
 
                         }else if(mode == 2){
-                                currentratio = (double)(uncompressedData/compressedData);
+                                currentratio = (double)(((double)uncompressedData)/(double)(compressedData));
                                 if(!isMonitoring){
                                     
                                     oldRatio = currentratio;
@@ -114,7 +111,6 @@ public class MyLZW {
                                     L = (int)Math.pow(2, (W));
                                     code = R + 1;
                                     st.put(input.substring(0, t + 1), code++);
-                                    System.err.println("CODE BOOK RESET");
                                     isMonitoring = false;
                             }     
                         }
@@ -165,9 +161,7 @@ public class MyLZW {
                 if(W < MAX_LENGTH){
                     W++;
                     L = (int)Math.pow(2, (W));
-                    System.err.println("W: " + W);
-                    System.err.println("L: " + L);
-                    // continue;
+                   
 
                 // if all codewords are reached and we already are using 16 bits         
                 }else if(W == MAX_LENGTH){
@@ -184,7 +178,8 @@ public class MyLZW {
 
                     }else if(mode == 2){
                         //monitor
-                        currentratio = (double)(uncompressedData/compressedData);
+                        // currentratio = (double)(uncompressedData/compressedData);
+                        currentratio = (double)(((double)uncompressedData)/(double)(compressedData));
                         if(!isMonitoring){
                                     
                             oldRatio = currentratio;
@@ -196,14 +191,12 @@ public class MyLZW {
                             W = MIN_LENGTH;
                             L = (int)Math.pow(2, (W));
                             i = R + 1; 
-                            System.err.println("CODE BOOK RESET");
                             isMonitoring = false;
                                 
 
                         }
                     }       
-                }
-                
+                }          
             
             }
 

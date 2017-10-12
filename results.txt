@@ -1,0 +1,111 @@
+
+
+
+
+
+
+*****Kb = bytes x 1000 (not using 1024 to multiply)
+*****Mb = bytes x 1,000,000
+
+
+			All.tar					assig2.doc			  bmps.tar         		
+
+Do nothing		uncompressed: 3mb		uncompressed: 90kb                  uncompressed: 1.106mb
+			compressed: 1.8mb		compressed: 40.04kb.         	   compressed: 80.91kb	
+	ratios:		1.667					2.24				    13.66		
+
+
+Reset:			uncompressed: 3mb		uncompressed: 90kb	   	   uncompressed: 1.106mb
+			compressed: 1.2mb		compressed: 40.04kb	   	  compressed: 80.91kb
+	ratios:            2.5					2.24				  13.66
+
+
+Monitor			uncompressed: 3mb		uncompressed: 90kb.     	 uncompressed: 1.106mb
+			compressed: 1.8mb		compressed: 40.04kb	 	compressed: 80.91kb
+
+	ratios		1.667					2.24				13.66
+
+
+
+
+			code2.txt		      	       edit.exe         		code.txt
+
+Do nothing		uncompressed: 72.35kb		uncompressed: 57.7kb             uncompressed: 236.33kb
+			compressed: 24.54kb		compressed: 20.52kb                compressed: 156.41kb	
+	ratios		2.946					2.811				      1.511
+
+
+Reset:			uncompressed: 72.35kb		uncompressed: 57.7kb	   	uncompressed: 236.33kb
+			compressed: 24.54kb		compressed: 20.52kb	   	compressed: 152.23kb
+
+	ratio		2.946					2.811				    1.55
+
+Monitor			uncompressed: 72.35kb		uncompressed: 57.7kb     	 uncompressed: 236.33
+			compressed: 24.54kb		compressed: 20.52kb.          	compressed: 156.41kb 
+
+	ratio		2.946					2.811				   1.511		
+
+
+
+	
+
+				frosty.jpg		       gone_fishing.bmp		       large.txt        			     
+
+Do nothing		uncompressed: 126.75kb		uncompressed: 17.34kb           uncompressed: 1.22mb
+			compressed: 163.79kb		compressed: 8.96kb                compressed: 501.78kb	
+	ratio		0.773					1.93				      2.43
+
+
+Reset:			uncompressed: 126.75kb		uncompressed: 17.34kb	   	uncompressed: 1.22mb
+			compressed: 171.12kb		compressed: 8.96kb	   	compressed:    527.51kb
+
+	ratio		0.741					1.93			     2.313
+
+Monitor			uncompressed: 126.75kb		uncompressed: 17.34kb     	uncompressed: 1.22mb
+			compressed: 163.79kb		compressed: 8.96kb          	compressed: 501.78kb 
+
+	ratio		0.773					1.93				2.43
+
+
+
+
+				lego-big.gif		         medium.txt            	   texts.tar        			     
+
+Do nothing		uncompressed: 93.37kb		uncompressed: 25.41kb           uncompressed: 1.382mb
+			compressed: 122.5kb		compressed: 12.53kb                compressed: 597.85kb	
+	ratio			0.7622				2.028			         2.31
+
+
+Reset:			uncompressed: 93.37kb		uncompressed: 25.41kb	    uncompressed: 1.382mb
+			compressed: 125.5kb		compressed: 12.53kb	   compressed:    580.47kb
+
+	ratio			0.7622				2.028			         2.38
+
+
+Monitor			uncompressed: 93.37kb		uncompressed: 25.41kb      uncompressed: 1.382mb
+			compressed: 125.5kb		compressed: 12.53kb          compressed: 597.85kb
+
+	ratio			0.7622				2.028			       2.31
+
+
+
+
+
+
+				wacky.bmp		     	 winnt256.bmp            	            			     
+
+Do nothing		uncompressed: 927.65kb			uncompressed: 157.04kb   
+			compressed: 3.95kb			compressed: 62.93kb 		        					               	
+	ratio			234.84				      2.495
+
+
+Reset:			uncompressed: 927.65kb			uncompressed: 157.04kb 	   
+			compressed: 3.95kb			compressed: 62.93kb 	   
+
+	ratio			234.84					2.495
+
+Monitor			uncompressed: 927.65kb			uncompressed: 157.04kb     
+			compressed: 3.95kb			compressed: 62.93kb          
+
+	ratio			234.84					2.495
+
