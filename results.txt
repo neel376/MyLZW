@@ -29,7 +29,7 @@ Monitor			uncompressed: 3mb		uncompressed: 90kb.     	 uncompressed: 1.106mb
 
 
 
-			code2.txt		      	       edit.exe         		code.txt
+			code2.txt		      	       code.txt         		edit.exe
 
 Do nothing		uncompressed: 72.35kb		uncompressed: 57.7kb             uncompressed: 236.33kb
 			compressed: 24.54kb		compressed: 20.52kb                compressed: 156.41kb	
