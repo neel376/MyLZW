@@ -47,8 +47,9 @@ correctly?:
 
 Additional comments to the grader:
 
+For MYLZW in results.txt I forgot kb is 1024 bytes, so for the results for MYLZW, I multiplied bytes by 1000 to convert to kb. Same thing for mb except I used 1,000,000 bytes = 1mb. Compression Ratio will still be the same. 
 
-
+This does not apply to Winzip’s results
 
 
 

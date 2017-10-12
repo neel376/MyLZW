@@ -4,8 +4,9 @@
 
 
 
-*****Kb = bytes x 1000 (not using 1024 to multiply to get kb)
-*****Mb = bytes x 1,000,000
+	FOR MYLZW, NOT WINZIP
+***** Kb = bytes x 1000 (not using 1024 to multiply) *************
+***** Mb = bytes x 1,000,000 ************************************
 
 
 			All.tar					assig2.doc			  bmps.tar         		
