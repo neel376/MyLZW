@@ -184,7 +184,7 @@ winnt256.bmp			44.0kb			   3.5
 
 
 
-all.tar				 1.8mb			   1.6
+all.tar				 1.8mb			   1.67
 
 
 Assig2.doc			 75kb			   1.13
