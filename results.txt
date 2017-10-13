@@ -211,7 +211,7 @@ gone_fishing.bmp		 9kb			   1.9
 Large.txt			605kb			   2
  
 
-Lego-big.gif			605kb			   0.15
+Lego-big.gif			129kb			   0.7
 
 
 medium.txt			13kb			   1.92
