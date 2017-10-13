@@ -165,7 +165,67 @@ winnt256.bmp			44.0kb			   3.5
 
 
 
+
+
+
+
+******************************************************************************************************************************************
+
+
+
+
+
+
+	USING LZW.java (already know original file sizes so not going to include that)
 	
+
+
+				Compressed size		Compression Ratio
+
+
+
+all.tar				 1.8mb			   1.6
+
+
+Assig2.doc			 75kb			   1.13
+
+
+Bmps.tar			 925kb			   1.13
+
+
+code.txt			 31kb	  		   2.28			  
+
+
+code2.txt			 24kb			   2.35
+
+
+edit.exe			 251kb		   	    0.92
+ 
+
+frosty.jpg			 177kb		           0.7
+ 
+
+gone_fishing.bmp		 9kb			   1.9
+
+
+Large.txt			605kb			   2
+ 
+
+Lego-big.gif			605kb			   0.15
+
+
+medium.txt			13kb			   1.92
+
+
+texts.tar			1mb			   1.4
+
+
+Wacky.bmp			4kb			   225
+
+
+winnt256.bmp			159kb			   0.96
+
+
 
 
 
