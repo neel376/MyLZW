@@ -16,7 +16,7 @@ Assignment #: 2
 
 Program due date: Thursday October 12th 
 
-Handed in date:  Thursday October 11th
+Handed in date:  Thursday October 12th
 
 Source code file name(s):
 MyLZW.java
