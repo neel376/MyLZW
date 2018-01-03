@@ -1,9 +1,0 @@
-*.class
-*.txt
-Queue.java
-StdIn.java
-StdOut.java
-LZW.java
-TST.java
-BinaryStdOut.java
-BinaryStdIn.java

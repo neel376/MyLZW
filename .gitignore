@@ -12,6 +12,14 @@
 *texts.tar*
 *wacky.bmp*
 *winnt256.bmp*
+*.txt
+Queue.java
+StdIn.java
+StdOut.java
+LZW.java
+TST.java
+BinaryStdOut.java
+BinaryStdIn.java
 
 *.class
 
